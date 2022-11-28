@@ -6,10 +6,12 @@ function App() {
   // VARIABLES ESTADO
   const [dataAdalabers, SetDataAdalabers] = useState(data.results);
   console.log(dataAdalabers);
+  const [searchAda, setSearchAda] = useState('');
 
   // USEEFFECT ?
 
   //HANDLER
+
   const handleNewAda = (e) => {
     SetNewAda({ ...newAda, [e.target.name]: e.target.value });
   }
@@ -17,19 +19,26 @@ function App() {
     e.preventDefault();
     SetDataAdalabers([...dataAdalabers, newAda]);
   };
+  const handleSearch = (e) => {
+    setSearchAda(e.target.value);
+  }
 
   // FUNCIONES Y VARIABLES QUE AYUDEN A RENDERIZAR HTML
 
-  const htmlAdalabers = dataAdalabers.map((completTable) => {
-    return (
+  const htmlAdalabers = dataAdalabers
+    .filter((filter) => filter.name.toLowerCase().includes(searchAda.toLocaleLowerCase()))
 
-      <tr key={completTable.id}>
-        <td>{completTable.name}</td>
-        <td>{completTable.counselor}</td>
-        <td>{completTable.speciality}</td>
-      </tr>
-    );
-  });
+
+    .map((completTable) => {
+      return (
+
+        <tr key={completTable.id}>
+          <td>{completTable.name}</td>
+          <td>{completTable.counselor}</td>
+          <td>{completTable.speciality}</td>
+        </tr>
+      );
+    });
   const [newAda, SetNewAda] = useState({
     name: '',
     counselor: '',
@@ -42,6 +51,14 @@ function App() {
     <div className="App">
       <h1 className="title">ADALABERS</h1>
       <main>
+        <label htmlFor="name">Nombre</label>
+        <input type="text" name='name' onInput={handleSearch} />
+        <select name="counselor" id="counselor">Escoge una tutora
+          <option value="alls"> Escoge una opción</option>
+          <option value="yanelis">Yanelis</option>
+          <option value="dayana"> Dayana</option>
+          <option value="ivan">Iván</option>
+        </select>
         <table className="table">
           <thead><tr>
             <th>Nombre</th>
