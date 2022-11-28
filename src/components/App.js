@@ -53,13 +53,13 @@ function App() {
         <section className='section'>
           <h2>Añadir una Adalaber</h2>
           <label htmlFor="name">Nombre</label>
-          <input type="text" name='name' onInput={handleNewAda} />
+          <input className='section__input' type="text" name='name' onInput={handleNewAda} />
 
           <label htmlFor="counselor"> Tutora</label>
-          <input type="text" name='counselor' onInput={handleNewAda} />
+          <input className='section__input' type="text" name='counselor' onInput={handleNewAda} />
           <label htmlFor="speciality"> Especialidad</label>
-          <input type="text" name='speciality' onInput={handleNewAda} />
-          <button onClick={handleAddClick} className='button' >Añadir una nueva Adalaber</button>
+          <input className='section__input' type="text" name='speciality' onInput={handleNewAda} />
+          <button onClick={handleAddClick} className='section__button' >Añadir una nueva Adalaber</button>
         </section>
       </main>
 
