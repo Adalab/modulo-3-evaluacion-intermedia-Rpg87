@@ -7,6 +7,7 @@ function App() {
   const [dataAdalabers, SetDataAdalabers] = useState(data.results);
   console.log(dataAdalabers);
   const [searchAda, setSearchAda] = useState('');
+  const [searchCons, setSearchCons] = useState('');
 
   // USEEFFECT ?
 
@@ -22,11 +23,16 @@ function App() {
   const handleSearch = (e) => {
     setSearchAda(e.target.value);
   }
+  const handleSearchCon = (e) => {
+    setSearchCons(e.target.value);
+  }
 
   // FUNCIONES Y VARIABLES QUE AYUDEN A RENDERIZAR HTML
 
   const htmlAdalabers = dataAdalabers
     .filter((filter) => filter.name.toLowerCase().includes(searchAda.toLocaleLowerCase()))
+    .filter((filter) => filter.counselor === searchCons)
+
 
 
     .map((completTable) => {
@@ -53,11 +59,11 @@ function App() {
       <main>
         <label htmlFor="name">Nombre</label>
         <input type="text" name='name' onInput={handleSearch} />
-        <select name="counselor" id="counselor">Escoge una tutora
-          <option value="alls"> Escoge una opción</option>
-          <option value="yanelis">Yanelis</option>
-          <option value="dayana"> Dayana</option>
-          <option value="ivan">Iván</option>
+        <select name="counselor" id="counselor" onChange={handleSearchCon}>Escoge una tutora
+          <option value=""> Escoge una opción</option>
+          <option value="Yanelis">Yanelis</option>
+          <option value="Dayana"> Dayana</option>
+          <option value="Ivan">Iván</option>
         </select>
         <table className="table">
           <thead><tr>
